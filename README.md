@@ -1,4 +1,4 @@
-# PHM 2022 Multi-Source Domain Adaptation
+# FIT Senior-Data-Scientist(CV, ML) Mail Assignment - Task2
 
 ## Overview
 
