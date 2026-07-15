@@ -59,9 +59,10 @@ MyTask2/
 │
 ├── model_weights/
 │
-├── models.py
-├── train-valid-source_domain.py
-└── train-pred-source-target-domain.py
+├── code/
+    ├── models.py
+    ├── train-valid-source_domain.py
+    └── train-pred-source-target-domain.py
 ```
 
 Before running either script, move into the code directory:
