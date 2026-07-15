@@ -5,6 +5,13 @@
 
 Please open PowerShell or Command Prompt (cmd.exe) in the project directory.
 
+Create a virtual environment for the project and activate it. Before proceeding, please install Anaconda to ensure that your environment is consistent with mine:
+
+```powershell
+conda create -n myenv python=3.10
+conda activate myenv
+```
+
 Install the required packages:
 
 ```powershell
@@ -60,68 +67,10 @@ MyTask2/
 Before running either script, move into the code directory:
 
 ```bash
-cd PHM2022_Project/code
+cd MyTask2/
 ```
 
 This step is important because the scripts construct the dataset paths using `os.getcwd()`.
-
----
-
-## Input Data Format
-
-Each individual must contain three CSV files:
-
-```text
-data_pin<individual_id>.csv
-data_pdmp<individual_id>.csv
-data_po<individual_id>.csv
-```
-
-For example, Individual 1 requires:
-
-```text
-data_pin1.csv
-data_pdmp1.csv
-data_po1.csv
-```
-
-Each CSV row is expected to follow this format:
-
-```text
-label, signal_value_1, signal_value_2, ..., signal_value_n
-```
-
-The first column is read as an integer class label. All remaining columns are read as the sensor sequence.
-
-The three sensor files belonging to the same individual must contain the same number of rows.
-
----
-
-## Dataset Configuration
-
-The source and target individuals are defined directly in the training scripts.
-
-### Validation Script
-
-```python
-source_domain_ls = [1, 2, 4, 5, 6]
-```
-
-The current validation script uses Individuals 1, 2, 4, 5, and 6.
-
-### Final Training and Prediction Script
-
-```python
-source_domain_ls = [1, 2, 4, 5, 6]
-target_domain_ls = [3]
-```
-
-This configuration uses:
-
-- Individuals 1, 2, 4, 5, and 6 as labeled source domains
-- Individual 3 as the target domain
-
-These lists can be changed if a different source-target configuration is required.
 
 ---
 
@@ -151,15 +100,7 @@ During training, it prints one line for each epoch:
 Epoch 001/100 | Loss=... Task-loss=... domain-loss=... mmd-loss=... acc=...
 ```
 
-The reported values are:
-
-- `Loss`: Sum of the task, domain, and MMD losses
-- `Task-loss`: Source-domain classification loss
-- `domain-loss`: Domain-classification loss
-- `mmd-loss`: Feature-distribution alignment loss
-- `acc`: Classification accuracy calculated on the selected validation batch
-
-This script is intended for checking model behavior and selecting the training configuration before final training.
+This script is intended to check model behavior and select the training configuration before final training.
 
 ---
 
@@ -191,31 +132,6 @@ Run:
 python train-pred-source-target-domain.py
 ```
 
-During final training, the program prints:
-
-```text
-Epoch 001/100 | Loss=... Task-loss=... domain-loss=... mmd-loss=...
-```
-
-The script trains for 100 epochs using:
-
-```text
-Batch size:       384 per domain
-Learning rate:    0.001
-Weight decay:     0.0
-Number of classes: 11
-Crop length:      300
-Random seed:      1234
-```
-
-The program automatically selects the execution device:
-
-```text
-CUDA GPU, when available
-CPU, otherwise
-```
-
----
 
 ## Generated Results
 
