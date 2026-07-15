@@ -194,6 +194,3 @@ cycle_id,predicted_label
 2,3
 3,7
 ```
-
-10. Check results/predictions_test.csv after correcting the target inference block.
-```
