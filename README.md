@@ -30,7 +30,7 @@ The scripts use paths relative to the current working directory. Therefore, the 
 Recommended structure:
 
 ```text
-PHM2022_Project/
+MyTask2/
 ├── Data_Challenge_PHM2022_training_data/
 │   ├── data_pin1.csv
 │   ├── data_pdmp1.csv
@@ -48,11 +48,13 @@ PHM2022_Project/
 │   ├── data_pdmp3.csv
 │   └── data_po3.csv
 │
-└── code/
-    ├── models.py
-    ├── train-valid-source_domain.py
-    ├── train-pred-source-target-domain.py
-    └── README.md
+├── results/
+│
+├── model_weights/
+│
+├── models.py
+├── train-valid-source_domain.py
+└── train-pred-source-target-domain.py
 ```
 
 Before running either script, move into the code directory:
